@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:to_do/controller/user_controller.dart';
 import 'package:to_do/pages/form.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +26,15 @@ class HomeApp extends StatefulWidget {
 }
 
 class _HomeAppState extends State<HomeApp> {
+   UserController _userController = UserController();
+
+  @override
+  void initState()
+  {
+    _userController.initialUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +44,6 @@ class _HomeAppState extends State<HomeApp> {
         leading: IconButton(
           icon: const Icon(Icons.menu,color: Colors.blueGrey,size: 40,),
           onPressed: (){
-
           },
         ),
       ),
@@ -45,6 +54,19 @@ class _HomeAppState extends State<HomeApp> {
         backgroundColor: Colors.teal,
         child: const Icon(Icons.add_circle,color: Colors.white,size: 35,),
       ),
+      body: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.orange.shade900
+            ),
+            margin: const EdgeInsets.all(20),
+            height: MediaQuery.of(context).size.height * 0.15,
+            alignment: Alignment.center,
+            child: const Text('Current Time',style: TextStyle(color: Colors.white,fontSize: 28),),
+          ),
+        ],
+      )
     );
   }
 }

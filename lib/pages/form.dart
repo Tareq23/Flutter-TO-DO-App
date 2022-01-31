@@ -41,9 +41,13 @@ class _FormPageState extends State<FormPage> {
               child: Column(
                 children: [
                   _buildName(),
+                  const SizedBox(height: 15,),
                   _buildUsername(),
+                  const SizedBox(height: 15,),
                   _buildEmail(),
+                  const SizedBox(height: 15,),
                   _buildSortDescription(),
+                  const SizedBox(height: 15,),
                   _buildAddress(),
                   const SizedBox(height: 60,),
                   Container(
@@ -81,6 +85,8 @@ class _FormPageState extends State<FormPage> {
       decoration: const InputDecoration(
         hintText:  'Enter Your Name',
         hintStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),
+        label: Text('Name      *'),
+        focusedBorder: OutlineInputBorder()
       ),
       validator: (String? value){
         if(value!.isEmpty)
@@ -170,7 +176,9 @@ class _FormPageState extends State<FormPage> {
       minLines: 3,
       maxLines: 10,
       decoration: const InputDecoration(
-        hintText:  'Enter Your Name',
+        border: OutlineInputBorder(),
+        labelText: "Desc",
+        hintText:  'sort description',
         hintStyle: TextStyle(fontSize: 18,fontWeight: FontWeight.w400),
       ),
       validator: (String? value){
