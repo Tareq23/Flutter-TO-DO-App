@@ -72,7 +72,7 @@ class _HomeAppState extends State<HomeApp> {
               itemCount: providerUserList.userList.length,
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               itemBuilder: (context,index){
                 return Container(
                   margin: const EdgeInsets.all(20),
@@ -96,7 +96,10 @@ class _HomeAppState extends State<HomeApp> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            ElevatedButton(onPressed: (){}, child: const Icon(Icons.delete,color: Colors.redAccent,)),
+                            ElevatedButton(onPressed: (){
+                              providerUserList.actionIndexSet(index);
+                              providerUserList.deleteUser();
+                            }, child: const Icon(Icons.delete,color: Colors.redAccent,)),
                             const SizedBox(width: 30,),
                             ElevatedButton(onPressed: (){
                               providerUserList.actionIndexSet(index);

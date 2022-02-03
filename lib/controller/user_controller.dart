@@ -38,4 +38,10 @@ class UserController extends ChangeNotifier
     actionIndex = index;
   }
 
+  void deleteUser()
+  {
+    userList.removeAt(actionIndex!);
+    notifyListeners();
+  }
+
 }
