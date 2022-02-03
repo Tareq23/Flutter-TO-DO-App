@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do/controller/user_controller.dart';
+import 'package:to_do/model/user_model.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
@@ -19,6 +22,7 @@ class _FormPageState extends State<FormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final userList = Provider.of<UserController>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -62,6 +66,8 @@ class _FormPageState extends State<FormPage> {
                         else if(_formKey.currentState!.validate())
                           {
                             _formKey.currentState!.save();
+                            // UserModel user = UserModel(name,username,email,aboutInfo,address);
+                            userList.addNewUser( UserModel(name,username,email,aboutInfo,address));
                             _formKey.currentState!.reset();
                           }
                       },
@@ -140,7 +146,7 @@ class _FormPageState extends State<FormPage> {
         }
       },
       onSaved: (value){
-        name = value;
+        email = value;
       },
     );
   }
@@ -163,7 +169,7 @@ class _FormPageState extends State<FormPage> {
         }
       },
       onSaved: (value){
-        name = value;
+        address = value;
       },
     );
   }
@@ -188,7 +194,7 @@ class _FormPageState extends State<FormPage> {
         }
       },
       onSaved: (value){
-        name = value;
+        aboutInfo = value;
       },
     );
   }
