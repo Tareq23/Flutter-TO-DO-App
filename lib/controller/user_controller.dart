@@ -6,34 +6,20 @@ class UserController extends ChangeNotifier
 {
   List<UserModel> userList = [];
 
+  int? actionIndex;
 
   UserController(){
     userList.addAll([
-      UserModel("tareq", "tareq23", "tareq@exampl.com",
+      UserModel("MD Tarequl Islam", "tareq23", "tareq@exampl.com",
           "I'am a android developer", "Bhola-Daulatkhan"),
-      UserModel("Rafi", "tareq23", "tareq@exampl.com",
+      UserModel("Rafi", "Rafi233", "Rafi@exampl.com",
           "I'am a android developer", "Bhola-Daulatkhan"),
-      UserModel("Rohan", "tareq23", "tareq@exampl.com",
+      UserModel("Rohan", "Rohan3", "Rohan@exampl.com",
           "I'am a android developer", "Bhola-Daulatkhan"),
-      UserModel("sumon", "tareq23", "tareq@exampl.com",
+      UserModel("riya", "riya565", "riya@exampl.com",
           "I'am a android developer", "Bhola-Daulatkhan"),
-      UserModel("jolil", "tareq23", "tareq@exampl.com",
+      UserModel("jolil", "jolil23", "tareq@exampl.com",
           "I'am a android developer", "Bhola-Daulatkhan"),
-    ]);
-  }
-
-  void initialUser() {
-    userList.addAll([
-      // UserModel("tareq", "tareq23", "tareq@exampl.com",
-      //     "I'am a android developer", "Bhola-Daulatkhan"),
-      // UserModel("tareq", "tareq23", "tareq@exampl.com",
-      //     "I'am a android developer", "Bhola-Daulatkhan"),
-      // UserModel("tareq", "tareq23", "tareq@exampl.com",
-      //     "I'am a android developer", "Bhola-Daulatkhan"),
-      // UserModel("tareq", "tareq23", "tareq@exampl.com",
-      //     "I'am a android developer", "Bhola-Daulatkhan"),
-      // UserModel("tareq", "tareq23", "tareq@exampl.com",
-      //     "I'am a android developer", "Bhola-Daulatkhan"),
     ]);
   }
 
@@ -42,4 +28,14 @@ class UserController extends ChangeNotifier
     userList.add(userModel);
     notifyListeners();
   }
+
+  UserModel showDetails()
+  {
+    return userList[actionIndex!];
+  }
+
+  void actionIndexSet(int index) {
+    actionIndex = index;
+  }
+
 }

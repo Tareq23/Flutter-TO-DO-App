@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do/controller/user_controller.dart';
 import 'package:to_do/pages/form.dart';
+import 'package:to_do/pages/user_details.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -32,16 +33,18 @@ class _HomeAppState extends State<HomeApp> {
   @override
   Widget build(BuildContext context) {
     final providerUserList = Provider.of<UserController>(context);
-    providerUserList.initialUser();
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(Icons.menu,color: Colors.blueGrey,size: 40,),
-          onPressed: (){
-          },
+        leading: Container(
+          padding: const EdgeInsets.only(left: 10),
+          child: IconButton(
+            icon: const Icon(Icons.menu,color: Colors.blueGrey,size: 40,),
+            onPressed: (){
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -61,9 +64,9 @@ class _HomeAppState extends State<HomeApp> {
             height: MediaQuery.of(context).size.height * 0.15,
             alignment: Alignment.center,
             // child: const Text('Current Time',style: TextStyle(color: Colors.white,fontSize: 28),),
-            child: Text(providerUserList.userList.length.toString()),
+            child: Text("Total User's   :   "+providerUserList.userList.length.toString(),style: const TextStyle(fontWeight: FontWeight.w700,fontSize: 22,color: Colors.white),),
           ),
-          Container(
+          SizedBox(
             height: size.height * 0.65,
             child: ListView.builder(
               itemCount: providerUserList.userList.length,
@@ -73,16 +76,20 @@ class _HomeAppState extends State<HomeApp> {
               itemBuilder: (context,index){
                 return Container(
                   margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.pink.shade900,
+                  ),
                   width: size.width * 0.6,
-                  height: size.height * 0.25,
-                  color: Colors.pink.shade900,
+                  height: size.height * 0.15,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(
                         child: Container(
-                            alignment: Alignment.center,
-                            child: Text(providerUserList.userList[index].name.toString(),style: const TextStyle(color: Colors.white,fontSize: 20),)
+                            alignment: Alignment.centerLeft,
+                            child: Text("${providerUserList.userList[index].name}",style: const TextStyle(color: Colors.white,fontSize: 20),)
                         ),
                       ),
                       Expanded(
@@ -91,7 +98,10 @@ class _HomeAppState extends State<HomeApp> {
                           children: [
                             ElevatedButton(onPressed: (){}, child: const Icon(Icons.delete,color: Colors.redAccent,)),
                             const SizedBox(width: 30,),
-                            ElevatedButton(onPressed: (){}, child: const Icon(Icons.view_list,color: Colors.greenAccent,)),
+                            ElevatedButton(onPressed: (){
+                              providerUserList.actionIndexSet(index);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailsPage()));
+                            }, child: const Icon(Icons.view_list,color: Colors.greenAccent,)),
                           ],
                         )
                       ),
